@@ -15,7 +15,8 @@
   "license": "BSD",
   "dependencies": {
     "express": "3.0.6",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "redis-url": "0.1.0"
   },
   "engines": {
     "node": "0.8.x",

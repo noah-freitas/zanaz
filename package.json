@@ -2,9 +2,10 @@
   "name": "noahfreitas.com",
   "version": "0.0.1",
   "description": "Express website software for noahfreitas.com",
-  "main": "index.js",
+  "main": "server.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "coffee ./server"
   },
   "repository": {
     "type": "git",

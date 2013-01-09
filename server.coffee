@@ -16,6 +16,6 @@ app = express()
 app.get '/', (req, res) ->
   client.get 'message', (err, reply) ->
     if err then console.log err
-    res.send "<h1>#{reply}</h1><code>#{process.env.REDISCLOUD_URL}<code>"
+    res.send "<h1>#{reply}</h1>"
 
 app.listen process.env.PORT

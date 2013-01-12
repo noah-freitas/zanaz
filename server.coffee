@@ -10,7 +10,10 @@ app = express()
 
 # Add our middleware.
 app.configure ->
+  app.set 'views', "#{__dirname}/views"
+  app.set 'view engine', 'jade'
   app.use express.favicon './public/favicon.ico'
+  app.use express.logger 'dev'
   app.use app.router
 
 article.use app

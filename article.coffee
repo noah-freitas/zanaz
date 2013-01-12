@@ -1,7 +1,12 @@
 redisClient = require('./redis').client
 
+# Add dummy data.
 redisClient.hset 'articles/12-months-of-middleware', '12 Months of Middleware', Date(), redisClient.print
-redisClient.zadd 'articles', 1, 'articles/12-months-of-middleware', redisClient.print
+redisClient.zadd 'articles', 1, 'articles/12-months-of-middleware|12 Months of Middleware', redisClient.print
+
+parseArticle = (article) ->
+  arr = article.split '|'
+  { path: arr[0], title: arr[1] }
 
 exports.middleware = (req, res, next) ->
   console.log 'In article middleware'
@@ -12,8 +17,9 @@ exports.use = (app) ->
   app.get '/articles', (req, res) ->
     redisClient.zrevrange 'articles', 0, -1, (err, reply) ->
       if err then console.log err
-      console.log reply
-      res.send reply
+      articles = [parseArticle article for article in reply]
+      res.send articles
+      # res.render 'articles', articles: articles
 
   # Detail view
   app.get '/articles/:id', (req, res) ->

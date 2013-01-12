@@ -8,7 +8,12 @@ redisClient.set 'message', 'Hello World!'
 # Express app.
 app = express()
 
-app.use article
+# Add our middleware.
+app.configure ->
+  app.use express.favicon './public/favicon.ico'
+  app.use app.router
+
+article.use app
 
 app.get '/', (req, res) ->
   redisClient.get 'message', (err, reply) ->

@@ -7,3 +7,4 @@ client.auth redisURL.auth.split(':')[1]
 client.on 'error', (err) -> console.log "Error #{err}"
 
 exports.client = client
+exports.print = redis.print

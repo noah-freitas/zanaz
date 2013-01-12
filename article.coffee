@@ -13,6 +13,7 @@ exports.use = (app) ->
     redisClient.zrevrange 'articles', 0, -1, (err, reply) ->
       if err then console.log err
       console.log reply
+      res.send reply
 
   # Detail view
   app.get '/articles/:id', (req, res) ->
